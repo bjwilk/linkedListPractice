@@ -57,29 +57,47 @@ class SinglyLinkedList {
   }
 
   removeFromTail(val) {
-    const newNode = new SinglyLinkedNode(val);
     if (this.head === null) {
       return undefined;
-    } else {
-      let currNode = this.head;
-      while (currNode.next !== null) {
-        currNode = currNode.next;
-      }
-      currNode.next = newNode;
     }
-    this.length++;
+
+    if (this.head.next === null) {
+      const removedVal = this.head.value;
+      this.head = null;
+      this.length--;
+      return removedVal;
+    }
+
+    let prevNode = this.head;
+    let currNode = this.head.next;
+
+    while (currNode.next !== null) {
+      prevNode = currNode;
+      currNode = currNode.next;
+    }
+
+    const removedVal = currNode;
+    prevNode.next = null;
+    this.length--;
+
+    return removedVal;
   }
 
   peekAtHead() {
-    // Return the value of head node
-    // Your code here
-    // Write your hypothesis on the time complexity of this method here
+    if (this.head !== null) {
+      return this.head.value;
+    } else {
+      return undefined;
+    }
   }
 
   print() {
-    // Print out the linked list
-    // Your code here
-    // Write your hypothesis on the time complexity of this method here
+    let current = this.head;
+
+    while (current) {
+      console.log(current.value);
+      current = current.next;
+    }
   }
 }
 
