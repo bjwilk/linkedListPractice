@@ -86,9 +86,7 @@ class SinglyLinkedList {
   peekAtHead() {
     if (this.head !== null) {
       return this.head.value;
-    } else {
-      return undefined;
-    }
+    } 
   }
 
   print() {
